@@ -1,5 +1,7 @@
 package org.iPulse.general;
 
+import java.io.FileInputStream;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
@@ -7,24 +9,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class stepDefinitions extends TestBase{
 	
 	
-	
+
 	
 	@Given("open the iPulse application")
 	public void open_the_iPulse_application() {
 		//setup the chromedriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
+        System.out.println("driver value  is --"+driver);
         driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
-        driver.get("https://testapps.nsf.org/trunkecap");
+      //  driver.get("https://testapps.nsf.org/trunkecap");
+        System.out.println("OR value  is --"+OR);
         
 		
 		
@@ -35,6 +40,7 @@ public class stepDefinitions extends TestBase{
 	public void insert_value_into_the_field(String value,String fieldName) {
 		System.out.println("field name is --"+fieldName +" and value is ---"+value);
 		System.out.println("OR value  is --"+OR);
+		System.out.println("driver value  is --"+driver);
 		System.out.println("field xpath is --"+OR.getProperty(fieldName));
 		driver.findElement(By.xpath(OR.getProperty(fieldName))).sendKeys(value);
 		
